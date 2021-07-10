@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
  *          cn.netdiscovery.rxjava.CountDown
  * @author: Tony Shen
  * @date: 2021-07-10 21:46
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 倒计时的函数
  */
 fun countDown(
     delay: Long,
