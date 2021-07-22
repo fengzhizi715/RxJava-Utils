@@ -1,5 +1,6 @@
 package cn.netdiscovery.rxjava
 
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
@@ -18,10 +19,24 @@ fun delay(
     delay: Long,
     unit: TimeUnit,
     scheduler: Scheduler = Schedulers.computation(),
-    func: () -> Unit
+    action: Action
 ) {
     Observable.timer(delay, unit, scheduler)
         .subscribe{
-            func.invoke()
+            action.invoke()
+        }
+}
+
+fun delay(
+    delay: Long,
+    unit: TimeUnit,
+    subscribeScheduler: Scheduler = Schedulers.computation(),
+    observeScheduler: Scheduler,
+    action: Action
+): Disposable {
+    return Observable.timer(delay, unit, subscribeScheduler)
+        .observeOn(observeScheduler)
+        .subscribe {
+            action.invoke()
         }
 }
