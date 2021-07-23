@@ -20,12 +20,10 @@ fun delay(
     unit: TimeUnit,
     scheduler: Scheduler = Schedulers.computation(),
     action: Action
-) {
-    Observable.timer(delay, unit, scheduler)
-        .subscribe{
-            action.invoke()
-        }
-}
+): Disposable = Observable.timer(delay, unit, scheduler)
+    .subscribe {
+        action.invoke()
+    }
 
 fun delay(
     delay: Long,
@@ -33,10 +31,8 @@ fun delay(
     subscribeScheduler: Scheduler = Schedulers.computation(),
     observeScheduler: Scheduler,
     action: Action
-): Disposable {
-    return Observable.timer(delay, unit, subscribeScheduler)
-        .observeOn(observeScheduler)
-        .subscribe {
-            action.invoke()
-        }
-}
+): Disposable = Observable.timer(delay, unit, subscribeScheduler)
+    .observeOn(observeScheduler)
+    .subscribe {
+        action.invoke()
+    }
