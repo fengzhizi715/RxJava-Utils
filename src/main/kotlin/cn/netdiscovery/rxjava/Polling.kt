@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  * @date: 2021-07-10 23:08
  * @version: V1.0 轮询
  */
-fun polling(
+fun pollingToTakeUntil(
     initialDelay: Long,
     period: Long,
     unit: TimeUnit,
