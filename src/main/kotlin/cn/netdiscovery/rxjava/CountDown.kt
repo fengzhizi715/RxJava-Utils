@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit
 
 /**
  * 倒计时函数
- * @param delay 从什么时候开始倒计时
- * @param unit  时间的单位
- * @param scheduler 函数所使用的线程（默认是 computation 线程，当然也可以使用 io 等线程，后面无需再切换线程）
- * @param func 倒计时的 block
- * @param failure 倒计时失败的 block
+ * @param delay     从什么时候开始倒计时
+ * @param unit      时间的单位
+ * @param scheduler 线程调度器（默认使用 computation 线程，当然也可以使用 io 等线程）
+ * @param func      倒计时的 block
+ * @param failure   倒计时失败的 block
  */
 fun countDown(
     delay: Long,
