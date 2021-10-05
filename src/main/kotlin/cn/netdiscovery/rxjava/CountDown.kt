@@ -12,7 +12,16 @@ import java.util.concurrent.TimeUnit
  *          cn.netdiscovery.rxjava.CountDown
  * @author: Tony Shen
  * @date: 2021-07-10 21:46
- * @version: V1.0 倒计时的函数
+ * @version: V1.0 倒计时相关的函数
+ */
+
+/**
+ * 倒计时函数
+ * @param delay 从什么时候开始倒计时
+ * @param unit  时间的单位
+ * @param scheduler 函数所使用的线程（默认是 computation 线程，当然也可以使用 io 等线程，后面无需再切换线程）
+ * @param func 倒计时的 block
+ * @param failure 倒计时失败的 block
  */
 fun countDown(
     delay: Long,

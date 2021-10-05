@@ -8,7 +8,11 @@ import io.reactivex.rxjava3.disposables.Disposable
  *          cn.netdiscovery.rxjava.extension.`Disposable+Extension`
  * @author: Tony Shen
  * @date: 2021-07-10 23:02
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 Disposable 的扩展函数
+ */
+
+/**
+ * 安全释放 Disposable
  */
 fun Disposable?.safeDispose() {
 

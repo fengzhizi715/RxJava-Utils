@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @FileName: cn.netdiscovery.rxjava.RetryWithDelay
  * @author: Tony Shen
  * @date: 2021-07-11 23:14
- * @version: V1.0 重连机制
+ * @version: V1.0 RxJava 的重连机制配合 retryWhen 操作符一起使用
  */
 public class RetryWithDelay implements Function<Observable<? extends Throwable>, Observable<?>> {
 
