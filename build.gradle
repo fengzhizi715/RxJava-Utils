@@ -3,11 +3,11 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.10'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+group = 'com.github.fengzhizi715'
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
