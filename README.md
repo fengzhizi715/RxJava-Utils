@@ -23,3 +23,13 @@
 ```groovy
 implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.15'
 ```
+
+## Feature
+
+1. RetryWithDelay
+
+2. countDown()
+
+3. delay()
+
+4. pollingToTakeUntil()
