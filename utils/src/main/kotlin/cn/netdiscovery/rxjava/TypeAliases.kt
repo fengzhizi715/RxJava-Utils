@@ -11,3 +11,5 @@ package cn.netdiscovery.rxjava
 typealias Action = () -> Unit
 
 typealias OnNext<T> = (T) -> Unit
+
+typealias onError = (Throwable) -> Unit
