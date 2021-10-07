@@ -21,5 +21,5 @@
 然后在项目或者在 module 中添加：
 
 ```groovy
-implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.14'
+implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.15'
 ```
