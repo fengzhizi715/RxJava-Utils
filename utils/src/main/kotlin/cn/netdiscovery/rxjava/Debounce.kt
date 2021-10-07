@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
  *          cn.netdiscovery.rxjava.Debounce
  * @author: Tony Shen
  * @date: 2021-10-07 13:57
- * @version: V1.0 <描述当前版本功能>
+ * @version: V1.0 Debounce 相关的函数
  */
 
 fun <T> Observable<T>.debounce(
