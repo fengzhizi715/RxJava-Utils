@@ -26,9 +26,10 @@ implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.15'
 
 ## Feature
 
-1. RetryWithDelay 
+1. RetryWithDelay
 
-重连机制，配合 retryWhen 操作符一起使用
+   RxJava 的重连机制，需要配合 retryWhen 操作符一起使用
+
 
 2. Debounce
 * debounce()
@@ -44,9 +45,8 @@ implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.15'
 5. Polling
 * pollingToTakeUntil() 轮询函数，直到某个条件结束轮询
 
-6. Extension
-
-为 Disposable 提供扩展函数
-
+6. Extension 
+   
+   为 Disposable 提供扩展函数
 * safeDispose() 安全释放 Disposable
 * isDisposed() 判断 Disposable 是否已经 Disposed
