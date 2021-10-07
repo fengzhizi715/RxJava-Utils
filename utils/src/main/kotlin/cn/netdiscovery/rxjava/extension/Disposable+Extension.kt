@@ -22,6 +22,6 @@ fun Disposable?.safeDispose() {
 }
 
 /**
- * 判断 Disposable 是否已经 isDisposed
+ * 判断 Disposable 是否已经 Disposed
  */
 fun Disposable?.isDisposed(): Boolean = this?.isDisposed ?: true

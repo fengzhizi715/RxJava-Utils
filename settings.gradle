@@ -1,2 +1,3 @@
 rootProject.name = 'RxJava-Utils'
 
+include 'utils'
