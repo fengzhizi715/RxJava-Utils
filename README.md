@@ -45,7 +45,10 @@ implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.17'
 5. Polling
 * pollingToTakeUntil() 轮询函数，直到某个条件结束轮询
 
-6. Extension 
+6. AutoRefresh
+* refresh() 自动刷新的函数
+
+7. Extension 
    
    为 Disposable 提供扩展函数
 * safeDispose() 安全释放 Disposable
