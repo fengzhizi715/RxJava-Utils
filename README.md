@@ -53,3 +53,5 @@ implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.17'
    为 Disposable 提供扩展函数
 * safeDispose() 安全释放 Disposable
 * isDisposed() 判断 Disposable 是否已经 Disposed
+
+8. RxValue、RxValueMutable
