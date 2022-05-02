@@ -39,3 +39,31 @@ fun pollingToTakeUntil(
             it == true
         }
 }
+
+/**
+ * 轮询函数，直到某个条件，轮询真正结束。此时下游才收到订阅
+ * @param initialDelay 从什么时候开始倒计时
+ * @param period       每隔一定的时间，执行倒计时
+ * @param unit         时间的单位
+ * @param scheduler    线程调度器（默认使用 computation 线程，当然也可以使用 io 等线程）
+ * @param func         轮询的 block
+ */
+fun pollingWhenItEnd(
+    initialDelay: Long,
+    period: Long,
+    unit: TimeUnit,
+    scheduler: Scheduler = Schedulers.computation(),
+    func: () -> Boolean
+): Observable<Boolean> {
+    return Observable.interval(initialDelay, period, unit, scheduler)
+        .flatMap {
+            return@flatMap Observable.create<Boolean> { emitter ->
+
+                emitter.onNext(func.invoke())
+            }
+        }.takeUntil {
+            it == true
+        }.filter {
+            it
+        }
+}
