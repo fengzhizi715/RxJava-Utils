@@ -43,7 +43,8 @@ implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.18'
 * delay() 延时函数
 
 5. Polling
-* pollingToTakeUntil() 轮询函数，直到某个条件结束轮询
+* pollingToTakeUntil() 轮询函数，直到某个条件结束轮询。下游会不停收到订阅，需要自行判断
+* pollingWhenItEnd() 轮询函数，直到某个条件，轮询真正结束。此时下游才收到订阅
 
 6. AutoRefresh
 * refresh() 自动刷新的函数

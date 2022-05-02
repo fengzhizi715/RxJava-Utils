@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  */
 
 /**
- * 轮询函数，直到某个条件结束轮询
+ * 轮询函数，直到某个条件结束轮询。下游会不停收到订阅，需要自行判断
  * @param initialDelay 从什么时候开始倒计时
  * @param period       每隔一定的时间，执行倒计时
  * @param unit         时间的单位
