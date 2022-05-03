@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit
  */
 
 /**
- * 轮询函数，直到某个条件结束轮询。下游会不停收到订阅，需要自行判断
+ * 轮询函数，当触发某个条件时轮询结束。下游会不停地收到订阅，需要自行判断
  * @param initialDelay 从什么时候开始倒计时
  * @param period       每隔一定的时间，执行倒计时
  * @param unit         时间的单位
  * @param scheduler    线程调度器（默认使用 computation 线程，当然也可以使用 io 等线程）
- * @param func         轮询的 block
+ * @param func         轮询的条件
  */
 fun pollingToTakeUntil(
     initialDelay: Long,
@@ -41,12 +41,12 @@ fun pollingToTakeUntil(
 }
 
 /**
- * 轮询函数，直到某个条件，轮询真正结束。此时下游才收到订阅
+ * 轮询函数，当触发某个条件时轮询结束。轮询结束时，下游才开始收到订阅
  * @param initialDelay 从什么时候开始倒计时
  * @param period       每隔一定的时间，执行倒计时
  * @param unit         时间的单位
  * @param scheduler    线程调度器（默认使用 computation 线程，当然也可以使用 io 等线程）
- * @param func         轮询的 block
+ * @param func         轮询的条件
  */
 fun pollingWhenItEnd(
     initialDelay: Long,
@@ -65,5 +65,52 @@ fun pollingWhenItEnd(
             it == true
         }.filter {
             it
+        }
+}
+
+/**
+ * 轮询函数，当触发某个条件时轮询结束，该函数会限制轮询的次数，达到轮询的次数后便不再进行轮询。
+ * 在规定的次数内，达到轮询结束的条件，则会触发 succ 回调，
+ * 在规定的次数内，没有达到轮询结束的条件，则会调用 failure 回调。
+ * @param initialDelay 从什么时候开始倒计时
+ * @param period       每隔一定的时间，执行倒计时
+ * @param unit         时间的单位
+ * @param scheduler    线程调度器（默认使用 computation 线程，当然也可以使用 io 等线程）
+ * @param func         轮询的条件
+ * @param succ         轮询正常结束的回调
+ * @param failure      没有达到轮询结束条件的回调
+ */
+fun pollingWithLimited(
+    initialDelay: Long,
+    period: Long,
+    unit: TimeUnit,
+    scheduler: Scheduler = Schedulers.computation(),
+    count:Long,
+    func: () -> Boolean,
+    succ: () -> Unit,
+    failure:()->Unit
+) {
+
+    var failureCount:Long = 0
+    Observable.interval(initialDelay, period, unit, scheduler)
+        .flatMap {
+            return@flatMap Observable.create<Boolean> { emitter ->
+
+                emitter.onNext(func.invoke())
+            }
+        }.takeUntil {
+            it == true
+        }
+        .take(count)
+        .subscribe {
+            if (it) {
+                succ.invoke()
+            } else {
+                failureCount++
+
+                if (failureCount == count) {
+                    failure.invoke()
+                }
+            }
         }
 }
