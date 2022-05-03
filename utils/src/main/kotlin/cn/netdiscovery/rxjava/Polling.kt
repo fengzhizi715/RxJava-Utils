@@ -80,7 +80,7 @@ fun pollingWhenItEnd(
  * @param succ         轮询正常结束的回调
  * @param failure      没有达到轮询结束条件的回调
  */
-fun pollingWithLimited(
+fun pollingWithLimitedNumber(
     initialDelay: Long,
     period: Long,
     unit: TimeUnit,
