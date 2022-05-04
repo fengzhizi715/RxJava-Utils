@@ -29,8 +29,8 @@ fun refresh(
     period: Long,
     timeUnit: TimeUnit,
     scheduler: Scheduler = Schedulers.computation(),
-    func: () -> Unit,
-    failure: ((Throwable) -> Unit)? = null
+    func: Action,
+    failure: onError? = null
 ): Disposable = Observable.interval(initialDelay,period, timeUnit, scheduler)
     .subscribe({
         func.invoke()

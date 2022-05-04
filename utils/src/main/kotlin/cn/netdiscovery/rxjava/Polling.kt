@@ -2,6 +2,7 @@ package cn.netdiscovery.rxjava
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
@@ -87,12 +88,12 @@ fun pollingWithLimitedNumber(
     scheduler: Scheduler = Schedulers.computation(),
     count:Long,
     func: () -> Boolean,
-    succ: () -> Unit,
-    failure:()->Unit
-) {
+    succ: Action,
+    failure: Action
+): Disposable {
 
     var failureCount:Long = 0
-    Observable.interval(initialDelay, period, unit, scheduler)
+    return Observable.interval(initialDelay, period, unit, scheduler)
         .flatMap {
             return@flatMap Observable.create<Boolean> { emitter ->
 

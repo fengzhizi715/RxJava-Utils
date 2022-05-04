@@ -27,8 +27,8 @@ fun countDown(
     delay: Long,
     unit: TimeUnit,
     scheduler: Scheduler = Schedulers.computation(),
-    func: () -> Unit,
-    failure: ((Throwable) -> Unit)? = null
+    func: Action,
+    failure: onError? = null
 ): Disposable {
     return Observable.timer(delay, unit, scheduler)
         .subscribe({
