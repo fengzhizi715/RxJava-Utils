@@ -21,7 +21,7 @@
 然后在项目或者在 module 中添加：
 
 ```groovy
-implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.21'
+implementation 'com.github.fengzhizi715.RxJava-Utils:utils:v0.22'
 ```
 
 ## Feature
