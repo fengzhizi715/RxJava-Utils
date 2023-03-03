@@ -103,7 +103,7 @@ fun pollingWithLimitedNumber(
             it == true
         }
         .take(count)
-        .subscribe {
+        .subscribe ({
             if (it) {
                 succ.invoke()
             } else {
@@ -113,5 +113,7 @@ fun pollingWithLimitedNumber(
                     failure.invoke()
                 }
             }
-        }
+        }, {
+            failure.invoke()
+        })
 }
